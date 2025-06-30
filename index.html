@@ -1,0 +1,902 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Youtube</title>
+    <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Full-width container using Bootstrap -->
+    <div class="container-fluid">
+        <!-- Row with vertical padding and vertically centered items ,Padding on Y-axis -1rem (16px)-->
+        <div class="row py-3 align-items-center">
+            <!-- Left: Menu + Logo  On small screens (≥576px) and up, the column takes 3 out of 12 columns.-->
+            <!-- Column with responsive width, flexbox layout, and vertical alignment -->
+            <div class="col-sm-3 col-4 d-flex align-items-center">
+                <img src="images/menuIcon.png" alt="Menu" width="25" style="cursor: pointer;"
+                    class="d-block me-3 cursor-pointer" onclick="handleMenuToggle()">
+                <img width="90" height="24"
+                    src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg" alt="">
+            </div>
+
+            <!-- Center: Search bar + Mic (only visible on sm and up) -->
+            <div class="col d-none d-sm-flex align-items-center justify-content-center gap-3">
+                <!-- Search input with search icon inside -->
+
+                <div class="position-relative" style="width: 100%; max-width: 700px;">
+                    <input type="text" class="form-control rounded-pill ps-3 pe-5" placeholder="Search">
+
+                    <!-- Vertical Divider -->
+                    <span class="position-absolute top-0 end-0"
+                        style="height: 100%; width: 1px; background-color: #ccc; margin-right: 45px;"></span>
+
+                    <!-- Search Icon with hover effect -->
+                    <span class="position-absolute top-50 end-0 translate-middle-y me-3" style="cursor: pointer;">
+                        <i class="bi bi-search fs-5 text-dark hover-effect"></i>
+                    </span>
+                </div>
+
+
+                <!-- Mic button -->
+                <div class="rounded-circle bg-light p-2 d-flex justify-content-center align-items-center"
+                    style="width: 40px; height: 40px;">
+                    <i class="bi bi-mic-fill"></i>
+                </div>
+            </div>
+
+            <!-- Right: Buttons & Icons -->
+            <div class="col-sm-3 col-8 d-flex justify-content-end align-items-center gap-3">
+                <!-- Search icon (visible only on XS) -->
+                <i class="bi bi-search d-sm-none d-block" style="font-size: 1.5rem;"></i>
+
+                <button class="btn btn-light rounded-pill d-flex align-items-center create-btn">
+                    <i class="bi bi-plus me-1"></i> Create
+                </button>
+
+                <!-- Notifications -->
+                <div class="d-none d-sm-flex d-flex justify-content-center align-items-center rounded-circle p-2 hover-bg"
+                    style="width: 40px; height: 40px; cursor: pointer;">
+                    <i class="bi bi-bell fs-5 text-dark"></i>
+                </div>
+
+
+
+
+                <!-- User Profile -->
+                <img width="30" src="images/Nithi.jpg" alt="" class="rounded-circle">
+            </div>
+        </div>
+
+
+    </div>
+
+    <!-- <div class="container-fluid">
+
+        <div class="row"> -->
+    <div class="container-fluid">
+        <div class="d-flex" style="min-height: 100vh;">
+            <!-- " overflow: hidden;"> -->
+
+            <!-- Sidebar Wrapper -->
+            <div id="sidebar" class="d-none d-md-block" style="width: 200px;">
+                <!-- d-none d-md-block: Hides sidebar on small devices, shows on medium and larger. -->
+                <!-- Full Sidebar -->
+                <div id="fullSidebar" style="height: 100vh; overflow-y: auto;overflow-x: hidden;">
+
+                    <div class="row py-2 cursor-pointer menu-item ">
+                        <div class="col d-flex">
+                            <img width="25px" height="25px" class="me-4" src="images/homeIcon.png" alt="">
+                            <p class="d-md-block d-none m-0 p-0 ">Home</p>
+                        </div>
+                    </div>
+                    <!-- <div class="row py-2 cursor-pointer menu-item ">
+                        <div class="col d-flex">
+                            <img width="25px" height="25px" class="me-4" src="images/exploreIcon.png" alt="">
+                            <p class="d-md-block d-none m-0 p-0 ">Explore</p>
+                        </div>
+                    </div> -->
+                    <div class="row py-2 cursor-pointer menu-item ">
+                        <div class="col d-flex">
+                            <img width="25px" height="25px" class="me-4" src="images/short.svg" alt="">
+                            <p class="d-md-block d-none m-0 p-0 ">Shorts</p>
+                        </div>
+                    </div>
+                    <div class="row py-2 cursor-pointer menu-item ">
+                        <div class="col d-flex">
+                            <img width="25px" height="25px" class="me-4" src="images/subscriptionsIcon.png" alt="">
+                            <p class="d-md-block d-none m-0 p-0 ">Subscriptions</p>
+                        </div>
+                    </div>
+
+                    <hr>
+                    <div class="row py-2 menu-item ">
+                        <div class="col d-flex">
+                            <p class="m-0 p-0">You ></p>
+                        </div>
+                    </div>
+
+                    <div class="row py-2 cursor-pointer menu-item ">
+                        <div class="col d-flex align-items-center">
+                            <i class="bi bi-clock-history fs-4 me-4"></i>
+                            <p class="d-md-block d-none m-0">History</p>
+                        </div>
+                    </div>
+
+                    <div class="row py-2 cursor-pointer menu-item ">
+                        <div class="col d-flex">
+                            <img width="25px" height="25px" class="me-4" src="images/libraryIcon.png" alt="">
+                            <p class="d-md-block d-none m-0 p-0 ">Playlist</p>
+                        </div>
+                    </div>
+                    <div class="row py-2 cursor-pointer menu-item ">
+                        <div class="col d-flex align-items-center">
+                            <i class="bi bi-play-btn fs-4 me-4"></i>
+
+                            <p class="d-md-block d-none m-0  ">Your Videos</p>
+                        </div>
+                    </div>
+                    <div class="row py-2 cursor-pointer menu-item ">
+                        <div class="col d-flex align-items-center">
+                            <i class="bi bi-hand-thumbs-up fs-4 me-4"></i>
+                            <p class="d-md-block d-none m-0">Liked Videos</p>
+                        </div>
+                    </div>
+                    <div class="row py-2 cursor-pointer menu-item ">
+                        <div class="col d-flex">
+                            <img width="25px" height="25px" class="me-4" src="images/watchLater.png" alt="">
+                            <p class="d-md-block d-none m-0 p-0 ">Watch Later</p>
+                        </div>
+                    </div>
+
+                    <hr>
+                    <div class="row py-2 cursor-pointer menu-item ">
+                        <div class="col d-flex">
+                            <p class="d-md-block d-none m-0 p-0 ">Subscriptions</p>
+                        </div>
+                    </div>
+
+                    <div class="row py-2 cursor-pointer menu-item ">
+                        <div class="col d-flex">
+                            <img width="25px" height="25px" class="me-4 rounded-circle" src="images/bro.jpg" alt="">
+                            <p class="d-md-block d-none m-0 p-0">Brototype</p>
+                        </div>
+                    </div>
+
+                    <div class="row py-2 cursor-pointer menu-item ">
+                        <div class="col d-flex">
+                            <img width="25px" height="25px" class="me-4 rounded-circle" src="images/entry.jpg" alt="">
+                            <p class="d-md-block d-none m-0 p-0">Entry Coding</p>
+                        </div>
+                    </div>
+
+                    <div class="row py-2 cursor-pointer menu-item ">
+                        <div class="col d-flex">
+                            <img width="25px" height="25px" class="me-4 rounded-circle" src="images/nihalikka.jpg"
+                                alt="">
+                            <p class="d-md-block d-none m-0 p-0">Nihal Hameed</p>
+                        </div>
+                    </div>
+
+                    <div class="row py-2 cursor-pointer menu-item ">
+                        <div class="col d-flex">
+                            <img width="25px" height="25px" class="me-4 rounded-circle" src="images/bro.jpg" alt="">
+                            <p class="d-md-block d-none m-0 p-0">Brototype</p>
+                        </div>
+                    </div>
+
+                    <hr>
+                    <div class="row py-2 cursor-pointer menu-item ">
+                        <div class="col d-flex">
+                            <p class="d-md-block d-none m-0 p-0 ">Explore</p>
+                        </div>
+                    </div>
+
+                    <div class="row py-2 cursor-pointer menu-item ">
+                        <div class="col d-flex">
+                            <img width="25px" height="25px" class="me-4 rounded-circle" src="images/bro.jpg" alt="">
+                            <p class="d-md-block d-none m-0 p-0">Brototype</p>
+                        </div>
+                    </div>
+
+                    <div class="row py-2 cursor-pointer menu-item ">
+                        <div class="col d-flex">
+                            <img width="25px" height="25px" class="me-4 rounded-circle" src="images/entry.jpg" alt="">
+                            <p class="d-md-block d-none m-0 p-0">Entry Coding</p>
+                        </div>
+                    </div>
+
+                    <div class="row py-2 cursor-pointer menu-item ">
+                        <div class="col d-flex">
+                            <img width="25px" height="25px" class="me-4 rounded-circle" src="images/nihalikka.jpg"
+                                alt="">
+                            <p class="d-md-block d-none m-0 p-0">Nihal Hameed</p>
+                        </div>
+                    </div>
+
+                    <div class="row py-2 cursor-pointer menu-item ">
+                        <div class="col d-flex">
+                            <img width="25px" height="25px" class="me-4 rounded-circle" src="images/bro.jpg" alt="">
+                            <p class="d-md-block d-none m-0 p-0">Brototype</p>
+                        </div>
+                    </div>
+                    <div class="row py-2 cursor-pointer menu-item ">
+                        <div class="col d-flex">
+                            <img width="25px" height="25px" class="me-4 rounded-circle" src="images/bro.jpg" alt="">
+                            <p class="d-md-block d-none m-0 p-0">Brototype</p>
+                        </div>
+                    </div>
+                    <div class="row py-2 cursor-pointer menu-item ">
+                        <div class="col d-flex">
+                            <img width="25px" height="25px" class="me-4 rounded-circle" src="images/bro.jpg" alt="">
+                            <p class="d-md-block d-none m-0 p-0">Brototype</p>
+                        </div>
+                    </div>
+                    <div class="row py-2 cursor-pointer menu-item ">
+                        <div class="col d-flex">
+                            <img width="25px" height="25px" class="me-4 rounded-circle" src="images/bro.jpg" alt="">
+                            <p class="d-md-block d-none m-0 p-0">Brototype</p>
+                        </div>
+                    </div>
+
+                    <hr>
+                </div>
+
+                <!-- Mini Sidebar -->
+                <div id="miniMenu" class="d-none d-flex flex-column align-items-start pt-3 ps-3">
+                    <!-- Mini icons -->
+                    <img src="images/homeIcon.png" width="25" class="my-3" style="cursor:pointer;" />
+                    <img src="images/exploreIcon.png" width="25" class="my-3" style="cursor:pointer;" />
+                    <img src="images/short.svg" width="25" class="my-3" style="cursor:pointer;" />
+                    <img src="images/subscriptionsIcon.png" width="25" class="my-3" style="cursor:pointer;" />
+                </div>
+            </div>
+
+            <!-- Video Content -->
+            <!-- <div id="videoContent" class="col-12 col-md px-3"> -->
+            <div id="videoContent" class="col-12 col-md px-3" style="overflow-y: auto; height: 100vh;">
+
+                <!-- class="col-md-10 col-12 col-sm-11"> -->
+                <div class="row sticky-top bg-white py-1 shadow-sm" style="z-index: 1020;">
+                    <div class="col d-flex overflow-auto flex-nowrap ">
+                        <span class="border rounded-2 px-2 py-1 mx-1 bg-dark text-white"
+                            style="cursor:pointer">All</span>
+                        <span class="border rounded-2 px-2 bg-secondary bg-opacity-25 mx-1 py-1"
+                            style="cursor:pointer">Music</span>
+                        <span class="border rounded-2 px-2 bg-secondary bg-opacity-25 mx-1 py-1"
+                            style="cursor:pointer">Live</span>
+                        <span class="border rounded-2 px-2 bg-secondary bg-opacity-25 mx-1 py-1"
+                            style="cursor:pointer">News</span>
+                        <span class="border rounded-2 px-2 bg-secondary bg-opacity-25 mx-1 py-1"
+                            style="cursor:pointer">Tamil </span>
+                        <span class="border rounded-2 px-2 bg-secondary bg-opacity-25 mx-1 py-1"
+                            style="cursor:pointer">Web </span>
+                        <span class="border rounded-2 px-2 bg-secondary bg-opacity-25 mx-1 py-1"
+                            style="cursor:pointer">Programming</span>
+                        <span class="border rounded-2 px-2 bg-secondary bg-opacity-25 mx-1 py-1"
+                            style="cursor:pointer">Watched</span>
+                        <span class="border rounded-2 px-2 bg-secondary bg-opacity-25 mx-1 py-1"
+                            style="cursor:pointer">Brototype Malayalam </span>
+                        <span class="border rounded-2 px-2 bg-secondary bg-opacity-25 mx-1 py-1"
+                            style="cursor:pointer">Tech Doctor Malayalam </span>
+                        <span class="border rounded-2 px-2 bg-secondary bg-opacity-25 mx-1 py-1"
+                            style="cursor:pointer">Hannan sha </span>
+                        <span class="border rounded-2 px-2 bg-secondary bg-opacity-25 mx-1 py-1"
+                            style="cursor:pointer">Music </span>
+                        <span class="border rounded-2 px-2 bg-secondary bg-opacity-25 mx-1 py-1"
+                            style="cursor:pointer">lifestyle </span>
+                    </div>
+                </div>
+
+                <div class="row my-3">
+                    <div class="col-lg-4 col-md-6 col-sm-12 pb-4">
+                        <div class="card border-0">
+                            <!-- Video -->
+                            <div class="ratio ratio-16x9 rounded-top overflow-hidden">
+                                <iframe width="560" height="315"
+                                    src="https://www.youtube.com/embed/xMrjDjCV644?si=ewla0THeTm2oyTfH"
+                                    title="YouTube video player" frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            </div>
+
+                            <!-- Channel Info -->
+                            <div class="card-body d-flex p-2">
+                                <img class="rounded-circle me-2" width="40" height="40" src="images/bro.jpg" alt="">
+
+                                <div class="overflow-hidden">
+                                    <!-- Title -->
+                                    <p class="fw-bold mb-1 text-truncate-2">
+                                        The Journey from Ordinary to Software Engineer | Powered by Brototype
+                                    </p>
+
+                                    <!-- Subtext -->
+                                    <p class="mb-0 fw-medium">Brorotype Malayalam</p>
+
+                                    <!-- Views and Date -->
+                                    <p class="text-muted mb-0 small">1.9M views • 3 hours ago</p>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12 pb-4">
+                        <div class="card border-0">
+                            <!-- Video -->
+                            <div class="ratio ratio-16x9 rounded-top overflow-hidden">
+                                <iframe src="https://www.youtube.com/embed/3_L98FNBtwM?si=aJr2Nk2DEGOTH10z"
+                                    title="YouTube video player" allowfullscreen frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    referrerpolicy="strict-origin-when-cross-origin">
+                                </iframe>
+                            </div>
+
+                            <!-- Channel Info -->
+                            <div class="card-body d-flex p-2">
+                                <img class="rounded-circle me-2" width="40" height="40" src="images/bro.jpg" alt="">
+
+                                <div class="overflow-hidden">
+                                    <!-- Title -->
+                                    <p class="fw-bold mb-1 text-truncate-2">
+                                        Learn Coding | Brototype Malayalam Full Playlist Tutorial for Beginners
+                                    </p>
+
+                                    <!-- Subtext -->
+                                    <p class="mb-0 fw-medium">Brorotype</p>
+
+                                    <!-- Views and Date -->
+                                    <p class="text-muted mb-0 small">1.9M views • 11 days ago</p>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12 pb-4">
+                        <div class="card border-0">
+                            <!-- Video -->
+                            <div class="ratio ratio-16x9 rounded-top overflow-hidden">
+                                <iframe width="560" height="315"
+                                    src="https://www.youtube.com/embed/5RXZKstGll0?si=de36GxGinmrhnmZl"
+                                    title="YouTube video player" allowfullscreen frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    referrerpolicy="strict-origin-when-cross-origin">
+                                </iframe>
+                            </div>
+
+                            <!-- Channel Info -->
+                            <div class="card-body d-flex p-2">
+                                <img class="rounded-circle me-2" width="40" height="40" src="images/bro.jpg" alt="">
+
+                                <div class="overflow-hidden">
+                                    <!-- Title -->
+                                    <p class="fw-bold mb-1 text-truncate-2">
+                                        The Journey from Ordinary to Software Engineer | Powered by Brototype
+                                    </p>
+
+                                    <!-- Subtext -->
+                                    <p class="mb-0 fw-medium">Brorotype Malayalam</p>
+
+                                    <!-- Views and Date -->
+                                    <p class="text-muted mb-0 small">1.9M views • 3 hours ago</p>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12 pb-4">
+                        <div class="card border-0">
+                            <!-- Video -->
+                            <div class="ratio ratio-16x9 rounded-top overflow-hidden">
+                                <iframe src="https://www.youtube.com/embed/3_L98FNBtwM?si=aJr2Nk2DEGOTH10z"
+                                    title="YouTube video player" allowfullscreen frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    referrerpolicy="strict-origin-when-cross-origin">
+                                </iframe>
+                            </div>
+
+                            <!-- Channel Info -->
+                            <div class="card-body d-flex p-2">
+                                <img class="rounded-circle me-2" width="40" height="40" src="images/bro.jpg" alt="">
+
+                                <div class="overflow-hidden">
+                                    <!-- Title -->
+                                    <p class="fw-bold mb-1 text-truncate-2">
+                                        Learn Coding | Brototype Malayalam Full Playlist Tutorial for Beginners
+                                    </p>
+
+                                    <!-- Subtext -->
+                                    <p class="mb-0 fw-medium">Brorotype</p>
+
+                                    <!-- Views and Date -->
+                                    <p class="text-muted mb-0 small">1.9M views • 11 days ago</p>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12 pb-4">
+                        <div class="card border-0">
+                            <!-- Video -->
+                            <div class="ratio ratio-16x9 rounded-top overflow-hidden">
+                                <iframe width="560" height="315"
+                                    src="https://www.youtube.com/embed/5RXZKstGll0?si=de36GxGinmrhnmZl"
+                                    title="YouTube video player" allowfullscreen frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    referrerpolicy="strict-origin-when-cross-origin">
+                                </iframe>
+                            </div>
+
+                            <!-- Channel Info -->
+                            <div class="card-body d-flex p-2">
+                                <img class="rounded-circle me-2" width="40" height="40" src="images/bro.jpg" alt="">
+
+                                <div class="overflow-hidden">
+                                    <!-- Title -->
+                                    <p class="fw-bold mb-1 text-truncate-2">
+                                        The Journey from Ordinary to Software Engineer | Powered by Brototype
+                                    </p>
+
+                                    <!-- Subtext -->
+                                    <p class="mb-0 fw-medium">Brorotype Malayalam</p>
+
+                                    <!-- Views and Date -->
+                                    <p class="text-muted mb-0 small">1.9M views • 3 hours ago</p>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12 pb-4">
+                        <div class="card border-0">
+                            <!-- Video -->
+                            <div class="ratio ratio-16x9 rounded-top overflow-hidden">
+                                <iframe src="https://www.youtube.com/embed/3_L98FNBtwM?si=aJr2Nk2DEGOTH10z"
+                                    title="YouTube video player" allowfullscreen frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    referrerpolicy="strict-origin-when-cross-origin">
+                                </iframe>
+                            </div>
+
+                            <!-- Channel Info -->
+                            <div class="card-body d-flex p-2">
+                                <img class="rounded-circle me-2" width="40" height="40" src="images/bro.jpg" alt="">
+
+                                <div class="overflow-hidden">
+                                    <!-- Title -->
+                                    <p class="fw-bold mb-1 text-truncate-2">
+                                        Learn Coding | Brototype Malayalam Full Playlist Tutorial for Beginners
+                                    </p>
+
+                                    <!-- Subtext -->
+                                    <p class="mb-0 fw-medium">Brorotype</p>
+
+                                    <!-- Views and Date -->
+                                    <p class="text-muted mb-0 small">1.9M views • 11 days ago</p>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12 pb-4">
+                        <div class="card border-0">
+                            <!-- Video -->
+                            <div class="ratio ratio-16x9 rounded-top overflow-hidden">
+                                <iframe width="560" height="315"
+                                    src="https://www.youtube.com/embed/5RXZKstGll0?si=de36GxGinmrhnmZl"
+                                    title="YouTube video player" allowfullscreen frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    referrerpolicy="strict-origin-when-cross-origin">
+                                </iframe>
+                            </div>
+
+                            <!-- Channel Info -->
+                            <div class="card-body d-flex p-2">
+                                <img class="rounded-circle me-2" width="40" height="40" src="images/bro.jpg" alt="">
+
+                                <div class="overflow-hidden">
+                                    <!-- Title -->
+                                    <p class="fw-bold mb-1 text-truncate-2">
+                                        The Journey from Ordinary to Software Engineer | Powered by Brototype
+                                    </p>
+
+                                    <!-- Subtext -->
+                                    <p class="mb-0 fw-medium">Brorotype Malayalam</p>
+
+                                    <!-- Views and Date -->
+                                    <p class="text-muted mb-0 small">1.9M views • 3 hours ago</p>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12 pb-4">
+                        <div class="card border-0">
+                            <!-- Video -->
+                            <div class="ratio ratio-16x9 rounded-top overflow-hidden">
+                                <iframe src="https://www.youtube.com/embed/3_L98FNBtwM?si=aJr2Nk2DEGOTH10z"
+                                    title="YouTube video player" allowfullscreen frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    referrerpolicy="strict-origin-when-cross-origin">
+                                </iframe>
+                            </div>
+
+                            <!-- Channel Info -->
+                            <div class="card-body d-flex p-2">
+                                <img class="rounded-circle me-2" width="40" height="40" src="images/bro.jpg" alt="">
+
+                                <div class="overflow-hidden">
+                                    <!-- Title -->
+                                    <p class="fw-bold mb-1 text-truncate-2">
+                                        Learn Coding | Brototype Malayalam Full Playlist Tutorial for Beginners
+                                    </p>
+
+                                    <!-- Subtext -->
+                                    <p class="mb-0 fw-medium">Brorotype</p>
+
+                                    <!-- Views and Date -->
+                                    <p class="text-muted mb-0 small">1.9M views • 11 days ago</p>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12 pb-4">
+                        <div class="card border-0">
+                            <!-- Video -->
+                            <div class="ratio ratio-16x9 rounded-top overflow-hidden">
+                                <iframe width="560" height="315"
+                                    src="https://www.youtube.com/embed/5RXZKstGll0?si=de36GxGinmrhnmZl"
+                                    title="YouTube video player" allowfullscreen frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    referrerpolicy="strict-origin-when-cross-origin">
+                                </iframe>
+                            </div>
+
+                            <!-- Channel Info -->
+                            <div class="card-body d-flex p-2">
+                                <img class="rounded-circle me-2" width="40" height="40" src="images/bro.jpg" alt="">
+
+                                <div class="overflow-hidden">
+                                    <!-- Title -->
+                                    <p class="fw-bold mb-1 text-truncate-2">
+                                        The Journey from Ordinary to Software Engineer | Powered by Brototype
+                                    </p>
+
+                                    <!-- Subtext -->
+                                    <p class="mb-0 fw-medium">Brorotype Malayalam</p>
+
+                                    <!-- Views and Date -->
+                                    <p class="text-muted mb-0 small">1.9M views • 3 hours ago</p>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12 pb-4">
+                        <div class="card border-0">
+                            <!-- Video -->
+                            <div class="ratio ratio-16x9 rounded-top overflow-hidden">
+                                <iframe width="560" height="315"
+                                    src="https://www.youtube.com/embed/5RXZKstGll0?si=de36GxGinmrhnmZl"
+                                    title="YouTube video player" allowfullscreen frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    referrerpolicy="strict-origin-when-cross-origin">
+                                </iframe>
+                            </div>
+
+                            <!-- Channel Info -->
+                            <div class="card-body d-flex p-2">
+                                <img class="rounded-circle me-2" width="40" height="40" src="images/bro.jpg" alt="">
+
+                                <div class="overflow-hidden">
+                                    <!-- Title -->
+                                    <p class="fw-bold mb-1 text-truncate-2">
+                                        The Journey from Ordinary to Software Engineer | Powered by Brototype
+                                    </p>
+
+                                    <!-- Subtext -->
+                                    <p class="mb-0 fw-medium">Brorotype Malayalam</p>
+
+                                    <!-- Views and Date -->
+                                    <p class="text-muted mb-0 small">1.9M views • 3 hours ago</p>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12 pb-4">
+                        <div class="card border-0">
+                            <!-- Video -->
+                            <div class="ratio ratio-16x9 rounded-top overflow-hidden">
+                                <iframe width="560" height="315"
+                                    src="https://www.youtube.com/embed/5RXZKstGll0?si=de36GxGinmrhnmZl"
+                                    title="YouTube video player" allowfullscreen frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    referrerpolicy="strict-origin-when-cross-origin">
+                                </iframe>
+                            </div>
+
+                            <!-- Channel Info -->
+                            <div class="card-body d-flex p-2">
+                                <img class="rounded-circle me-2" width="40" height="40" src="images/bro.jpg" alt="">
+
+                                <div class="overflow-hidden">
+                                    <!-- Title -->
+                                    <p class="fw-bold mb-1 text-truncate-2">
+                                        The Journey from Ordinary to Software Engineer | Powered by Brototype
+                                    </p>
+
+                                    <!-- Subtext -->
+                                    <p class="mb-0 fw-medium">Brorotype Malayalam</p>
+
+                                    <!-- Views and Date -->
+                                    <p class="text-muted mb-0 small">1.9M views • 3 hours ago</p>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12 pb-4">
+                        <div class="card border-0">
+                            <!-- Video -->
+                            <div class="ratio ratio-16x9 rounded-top overflow-hidden">
+                                <iframe width="560" height="315"
+                                    src="https://www.youtube.com/embed/5RXZKstGll0?si=de36GxGinmrhnmZl"
+                                    title="YouTube video player" allowfullscreen frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    referrerpolicy="strict-origin-when-cross-origin">
+                                </iframe>
+                            </div>
+
+                            <!-- Channel Info -->
+                            <div class="card-body d-flex p-2">
+                                <img class="rounded-circle me-2" width="40" height="40" src="images/bro.jpg" alt="">
+
+                                <div class="overflow-hidden">
+                                    <!-- Title -->
+                                    <p class="fw-bold mb-1 text-truncate-2">
+                                        The Journey from Ordinary to Software Engineer | Powered by Brototype
+                                    </p>
+
+                                    <!-- Subtext -->
+                                    <p class="mb-0 fw-medium">Brorotype Malayalam</p>
+
+                                    <!-- Views and Date -->
+                                    <p class="text-muted mb-0 small">1.9M views • 3 hours ago</p>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="mobileSidebar">
+        <div class="offcanvas-header">
+            <div class="col-sm-3 col-4 d-flex align-items-center">
+                <img src="images/menuIcon.png" alt="Menu" width="25" class="me-3" onclick="hidemobilepopup()">
+                <img width="90" height="24"
+                    src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg" alt="">
+            </div>
+
+        </div>
+        <div class="offcanvas-body">
+            <!-- ✅ Your full menu copied inside -->
+            <div class="row py-2 menu-item ">
+                <div class="col d-flex">
+                    <img width="25px" height="25px" class="me-4" src="images/homeIcon.png" alt="">
+                    <p class="m-0 p-0">Home</p>
+                </div>
+            </div>
+
+
+            <div class="row py-2 menu-item ">
+                <div class="col d-flex">
+                    <img width="25px" height="25px" class="me-4" src="images/short.svg" alt="">
+                    <p class="m-0 p-0">Shorts</p>
+                </div>
+            </div>
+
+            <div class="row py-2 menu-item ">
+                <div class="col d-flex">
+                    <img width="25px" height="25px" class="me-4" src="images/subscriptionsIcon.png" alt="">
+                    <p class="m-0 p-0">Subscriptions</p>
+                </div>
+            </div>
+
+            <div class="row py-2 menu-item ">
+                <div class="col d-flex">
+                    <p class="m-0 p-0">You ></p>
+                </div>
+            </div>
+
+            <div class="row py-2 cursor-pointer menu-item ">
+                <div class="col d-flex align-items-center">
+                    <i class="bi bi-clock-history fs-4 me-4"></i>
+                    <p class="m-0 ">History</p>
+                </div>
+            </div>
+
+            <div class="row py-2 cursor-pointer menu-item ">
+                <div class="col d-flex">
+                    <img width="25px" height="25px" class="me-4" src="images/libraryIcon.png" alt="">
+                    <p class="m-0  p-0 ">Playlist</p>
+                </div>
+            </div>
+            <div class="row py-2 cursor-pointer menu-item ">
+                <div class="col d-flex align-items-center">
+                    <i class="bi bi-play-btn fs-4 me-4"></i>
+
+                    <p class="m-0   ">Your Videos</p>
+                </div>
+            </div>
+            <div class="row py-2 cursor-pointer menu-item ">
+                <div class="col d-flex align-items-center">
+                    <i class="bi bi-hand-thumbs-up fs-4 me-4"></i>
+                    <p class="m-0 ">Liked Videos</p>
+                </div>
+            </div>
+            <div class="row py-2 cursor-pointer menu-item ">
+                <div class="col d-flex">
+                    <img width="25px" height="25px" class="me-4" src="images/watchLater.png" alt="">
+                    <p class="m-0  p-0 ">Watch Later</p>
+                </div>
+            </div>
+
+            <hr>
+            <div class="row py-2 cursor-pointer menu-item ">
+                <div class="col d-flex">
+                    <p class="m-0  p-0 ">Subscriptions</p>
+                </div>
+            </div>
+
+            <div class="row py-2 cursor-pointer menu-item ">
+                <div class="col d-flex">
+                    <img width="25px" height="25px" class="me-4 rounded-circle" src="images/bro.jpg" alt="">
+                    <p class="m-0  p-0">Brototype</p>
+                </div>
+            </div>
+
+            <div class="row py-2 cursor-pointer menu-item ">
+                <div class="col d-flex">
+                    <img width="25px" height="25px" class="me-4 rounded-circle" src="images/entry.jpg" alt="">
+                    <p class="m-0  p-0">Entry Coding</p>
+                </div>
+            </div>
+
+            <div class="row py-2 cursor-pointer menu-item ">
+                <div class="col d-flex">
+                    <img width="25px" height="25px" class="me-4 rounded-circle" src="images/sim.jpg" alt="">
+                    <p class="m-0  p-0">Simplilearn</p>
+                </div>
+            </div>
+
+            <div class="row py-2 cursor-pointer menu-item ">
+                <div class="col d-flex">
+                    <img width="25px" height="25px" class="me-4 rounded-circle" src="images/bro.jpg" alt="">
+                    <p class="m-0  p-0">Brototype</p>
+                </div>
+            </div>
+
+            <hr>
+            <div class="row py-2 cursor-pointer menu-item ">
+                <div class="col d-flex">
+                    <p class="m-0  p-0 ">Explore</p>
+                </div>
+            </div>
+
+            <div class="row py-2 cursor-pointer menu-item ">
+                <div class="col d-flex">
+                    <img width="25px" height="25px" class="me-4 rounded-circle" src="images/bro.jpg" alt="">
+                    <p class="m-0  p-0">Brototype</p>
+                </div>
+            </div>
+
+            <div class="row py-2 cursor-pointer menu-item ">
+                <div class="col d-flex">
+                    <img width="25px" height="25px" class="me-4 rounded-circle" src="images/entry.jpg" alt="">
+                    <p class="m-0 p-0">Entry Coding</p>
+                </div>
+            </div>
+
+            <div class="row py-2 cursor-pointer menu-item ">
+                <div class="col d-flex">
+                    <img width="25px" height="25px" class="me-4 rounded-circle" src="images/sim.jpg" alt="">
+                    <p class="m-0 p-0">Simplilearn</p>
+                </div>
+            </div>
+
+            <div class="row py-2 cursor-pointer menu-item ">
+                <div class="col d-flex">
+                    <img width="25px" height="25px" class="me-4 rounded-circle" src="images/bro.jpg" alt="">
+                    <p class="m-0 p-0">Brototype</p>
+                </div>
+            </div>
+            <div class="row py-2 cursor-pointer menu-item ">
+                <div class="col d-flex">
+                    <img width="25px" height="25px" class="me-4 rounded-circle" src="images/bro.jpg" alt="">
+                    <p class="m-0 p-0">Brototype</p>
+                </div>
+            </div>
+            <div class="row py-2 cursor-pointer menu-item ">
+                <div class="col d-flex">
+                    <img width="25px" height="25px" class="me-4 rounded-circle" src="images/bro.jpg" alt="">
+                    <p class="m-0 p-0">Brototype</p>
+                </div>
+            </div>
+            <div class="row py-2 cursor-pointer menu-item ">
+                <div class="col d-flex">
+                    <img width="25px" height="25px" class="me-4 rounded-circle" src="images/bro.jpg" alt="">
+                    <p class="m-0 p-0">Brototype</p>
+                </div>
+            </div>
+            <hr>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+        crossorigin="anonymous"></script>
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            if (window.innerWidth >= 576) {
+                document.getElementById("fullSidebar").classList.remove("d-none");
+                document.getElementById("miniMenu").classList.add("d-none");
+                isMini = false;
+            }
+        });
+
+
+
+
+        let isMini = false;
+
+        function handleMenuToggle() {
+            const isMobile = window.innerWidth < 576;
+
+            if (isMobile) {
+                const sidebar = new bootstrap.Offcanvas(document.getElementById("mobileSidebar"));
+                sidebar.show();
+            } else {
+                const full = document.getElementById("fullSidebar");
+                const mini = document.getElementById("miniMenu");
+                const wrapper = document.getElementById("sidebar");
+
+                if (isMini) {
+                    // Show full sidebar
+                    wrapper.style.width = "200px";
+                    full.classList.remove("d-none");
+                    mini.classList.add("d-none");
+                } else {
+                    // Show mini menu
+                    wrapper.style.width = "70px";
+                    full.classList.add("d-none");
+                    mini.classList.remove("d-none");
+                    mini.classList.add("d-flex");
+                }
+
+                isMini = !isMini;
+            }
+        }
+
+
+        function hidemobilepopup() {
+            const offcanvasEl = document.getElementById('mobileSidebar');
+            const offcanvas = bootstrap.Offcanvas.getInstance(offcanvasEl) || new bootstrap.Offcanvas(offcanvasEl);
+            offcanvas.hide();
+        }
+
+    </script>
+
+</body>
+
+</html>

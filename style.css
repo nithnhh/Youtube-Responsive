@@ -1,0 +1,98 @@
+.create-btn {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+}
+
+.text-truncate-2 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 575.98px) {
+
+  /* XS screen only */
+  .create-btn {
+    padding: 0.3rem 0.75rem;
+    font-size: 0.85rem;
+  }
+}
+
+/* Limit mobile offcanvas width */
+.offcanvas-start {
+  width: 250px !important;
+  /* or try 220px, 280px based on your design */
+
+}
+
+#videoContent {
+  transition: margin-left 0.3s;
+}
+
+#miniMenu img {
+  margin-left: 0.25rem;
+}
+
+.hover-bg:hover {
+  background-color: #f1f1f1;
+  /* or any Bootstrap color like #e9ecef */
+}
+
+#sidebarWrapper {
+  transition: all 0.3s;
+}
+
+.sidebar-expanded {
+  width: 200px;
+  min-width: 200px;
+}
+
+.sidebar-mini {
+  width: 72px;
+  min-width: 72px;
+}
+
+#fullSidebar {
+  display: block;
+}
+
+.sidebar-mini #fullSidebar {
+  display: none !important;
+}
+
+.sidebar-mini #miniMenu {
+  display: flex !important;
+}
+
+#miniMenu {
+  display: none;
+}
+
+.menu-item {
+  border-radius: 0.5rem;
+  transition: background-color 0.2s;
+}
+
+.menu-item:hover {
+  background-color: #f8f9fa;
+  /* Bootstrap's light bg color */
+  cursor: pointer;
+
+}
+
+.hover-effect:hover {
+  color: #0d6efd;
+  /* Bootstrap primary color */
+  transform: scale(1.1);
+  transition: 0.2s;
+}
+
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+  margin: 0;
+}
